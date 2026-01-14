@@ -1,0 +1,65 @@
+stages:
+  - test
+  - report
+
+variables:
+  PLAYWRIGHT_IMAGE: mcr.microsoft.com/playwright:v1.50.0-focal
+
+# Standard job template
+.test-template:
+  image: $PLAYWRIGHT_IMAGE
+  before_script:
+    - npm ci
+  artifacts:
+    when: always
+    paths:
+      - allure-results/
+      - playwright-report/
+      - test-results/
+    expire_in: 7 days
+
+# Parallel execution across browsers
+test-chromium:
+  extends: .test-template
+  stage: test
+  script:
+    - npx playwright test --project=chromium
+
+test-firefox:
+  extends: .test-template
+  stage: test
+  script:
+    - npx playwright test --project=firefox
+
+test-webkit:
+  extends: .test-template
+  stage: test
+  script:
+    - npx playwright test --project=webkit
+
+# Quality gate check (Linting)
+linting:
+  image: node:20
+  stage: test
+  before_script:
+    - npm ci
+  script:
+    - npm run lint
+
+# Reporting job
+generate-report:
+  stage: report
+  image: node:20
+  when: always
+  script:
+    - apt-get update && apt-get install -y openjdk-17-jre-headless
+    - npm install -g allure-commandline
+    - npm run allure:generate
+  artifacts:
+    paths:
+      - allure-report/
+    expire_in: 30 days
+  dependencies:
+    - test-chromium
+    - test-firefox
+    - test-webkit
