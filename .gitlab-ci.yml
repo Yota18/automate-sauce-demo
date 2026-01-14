@@ -3,7 +3,7 @@ stages:
   - report
 
 variables:
-  PLAYWRIGHT_IMAGE: mcr.microsoft.com/playwright:v1.50.0-focal
+  PLAYWRIGHT_IMAGE: mcr.microsoft.com/playwright:v1.57.0-noble
 
 # Standard job template
 .test-template:

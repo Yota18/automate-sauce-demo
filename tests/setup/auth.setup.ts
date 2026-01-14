@@ -6,7 +6,7 @@ const authFile = path.join(__dirname, '../../.auth.json');
 
 test('authenticate', async ({ page }) => {
   // Navigate to login page
-  await page.goto('https://www.saucedemo.com');
+  await page.goto('/');
 
   // Fill credentials
   await page.locator('[data-test="username"]').fill(users.standard.username);

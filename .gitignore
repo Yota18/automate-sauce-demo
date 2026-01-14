@@ -7,3 +7,9 @@ node_modules/
 /allure-report/
 .DS_Store
 *.log
+
+# Environment files
+.env
+
+# Authentication state
+.auth.json

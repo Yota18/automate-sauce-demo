@@ -8,8 +8,18 @@
     "strict": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "types": ["node", "@playwright/test"]
+    "types": [
+      "node",
+      "@playwright/test"
+    ]
   },
-  "include": ["tests/**/*", "pages/**/*", "data/**/*"],
-  "exclude": ["node_modules"]
+  "include": [
+    "tests/**/*",
+    "pages/**/*",
+    "data/**/*",
+    "fixtures/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
