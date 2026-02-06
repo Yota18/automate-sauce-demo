@@ -12,7 +12,7 @@ A high-performance, scalable, and resilient End-to-End automation framework buil
 - **Superior Observability**: Deep integration with **Allure @step** decorators, providing stakeholder-ready reports with screenshots/videos on failure.
 - **Enterprise Quality Gates**: Enforced code standards using **ESLint (Playwright-specific rules)**, **Prettier**, and **Husky** pre-commit hooks.
 - **Environmental Awareness**: Robust `.env` management with support for multi-environment execution (Dev/Staging/Prod).
-- **Parallel Orchestration**: High-speed execution with `fullyParallel` mode and dedicated **GitLab CI** pipeline.
+- **Parallel Orchestration**: High-speed execution with `fullyParallel` mode and dedicated **GitLab CI** and **GitHub Actions** pipelines.
 - **Multi-Browser Testing**: Automated testing across Chromium, Firefox, and WebKit.
 - **Authentication Management**: Reusable authentication state for faster test execution.
 
@@ -36,6 +36,9 @@ sauce-demo/
 │   └── fixtures.ts            # Custom test fixtures
 ├── data/               # Centralized test data
 │   └── testData.ts            # Users, products, error messages
+├── .github/            # GitHub Actions workflows
+│   └── workflows/
+│       └── playwright.yml    # GitHub Actions CI/CD (manual trigger)
 ├── .gitlab-ci.yml      # GitLab CI/CD pipeline configuration
 ├── playwright.config.ts # Playwright configuration
 └── package.json        # Project dependencies and scripts
@@ -123,13 +126,17 @@ npx playwright test --project=chromium
 
 ## 📈 CI/CD Pipeline
 
-The project includes a robust `.gitlab-ci.yml` that:
+The project includes CI/CD integration for both **GitHub Actions** and **GitLab CI**:
 
+### GitHub Actions (`.github/workflows/playwright.yml`)
+- **Manual Trigger**: Run tests on-demand via `workflow_dispatch`
+- **Browser Selection**: Choose to run on all browsers or specific one (Chromium/Firefox/WebKit)
+- **Artifact Storage**: Playwright reports stored for 30 days
+
+### GitLab CI (`.gitlab-ci.yml`)
 1. **Lints** the code for quality violations
 2. **Executes** tests in parallel across Chromium, Firefox, and WebKit
 3. **Generates** and archives the Allure Report as a job artifact
-
-The pipeline runs on every push and merge request, ensuring code quality and test stability.
 
 ## 🛠 Quality Oversight
 
@@ -145,7 +152,7 @@ This project enforces code quality through:
 1. **Setup Phase**: Authentication state is created once and reused across tests
 2. **Test Execution**: Tests run in parallel across different browsers
 3. **Reporting**: Allure generates detailed reports with screenshots and videos on failure
-4. **Artifacts**: Test results are stored for 7 days in CI/CD
+4. **Artifacts**: Test results are stored in CI/CD (30 days for GitHub, 7 days for GitLab)
 
 ## 📊 Reporting
 
@@ -189,11 +196,4 @@ npm run allure:report
 ✅ **Negative Testing** for edge cases and error handling  
 ✅ **Multi-Browser** parallel execution  
 ✅ **Reusable Authentication** state for performance  
-
-## 🤝 Contributing
-
-1. Create a feature branch
-2. Make your changes
-3. Run `npm run lint` and `npm test` locally
-4. Submit a merge request
 
