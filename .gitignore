@@ -5,11 +5,40 @@ node_modules/
 /playwright/.cache/
 /allure-results/
 /allure-report/
+
+# OS generated files
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+
+# IDE and editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Debug logs
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# TypeScript build output
+dist/
+build/
+*.tsbuildinfo
 
 # Environment files
 .env
+.env.local
+.env.*.local
 
 # Authentication state
 .auth.json
+
+# Coverage reports
+coverage/

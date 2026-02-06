@@ -197,10 +197,3 @@ npm run allure:report
 3. Run `npm run lint` and `npm test` locally
 4. Submit a merge request
 
-## 📄 License
-
-This project is for portfolio demonstration purposes.
-
----
-
-**Built with ❤️ using Playwright, TypeScript, and Allure**
