@@ -1,4 +1,4 @@
-# MAANG-Standard Playwright Portfolio: SauceDemo
+# Playwright Portfolio: SauceDemo
 
 ![Playwright](https://img.shields.io/badge/Playwright-v1.57.0-2EAD33?style=for-the-badge&logo=playwright&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-v5.8-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
